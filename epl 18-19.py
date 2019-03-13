@@ -145,6 +145,47 @@ plt.title("Results of Juventus's and Athletico's matches so far in the 18/19 sea
 plt.show()
 
 
+#setting tweepy up
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_secret)
+api = tweepy.API(auth,wait_on_rate_limit=True)
+translator = Translator()
+
+
+#gathering live tweets with probable hashtags for the fixture for an hour before the game starts
+class Listener(StreamListener):
+
+    def on_data(self, status):
+        print(status)
+        with open('Juve_vs_AthMadrid.json', 'a') as f:
+            f.write(status)
+        return True
+    def on_error(self, status):
+        print(status)
+        return True
+    
+twitter_stream = Stream(auth, Listener())
+twitter_stream.filter(track=['#Juve', '#juve', '#JuveAtleti', '#turin',
+                             '#AúpaAtleti', '#ForzaJuve', '#AtléticosAroundTheWorld!', '#VamosAtleti',
+                             '#AtléticosPorElMundo'])
+
+#class Listener(StreamListener):
+#
+#    def on_data(self, status):
+#        print(status)
+#        with open('ManCity_vs_Sch04.json', 'a') as f:
+#            f.write(status)
+#        return True
+#    def on_error(self, status):
+#        print(status)
+#        return True
+#    
+#twitter_stream = Stream(auth, Listener())
+#twitter_stream.filter(track=['#mancity', '#ManCity', '#cityvs04', '#S04MCI',
+#                             '#MCIS04', '#S04', '#s04', '#SCHALKE!'])
+
+
+
 
 
 
