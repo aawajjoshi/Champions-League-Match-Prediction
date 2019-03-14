@@ -159,8 +159,7 @@ plt.title("Results of Juventus's and Athletico's matches so far in the 18/19 sea
 plt.show()
 
 
-
-#creating a horizontal barplot to show the season results of each team till date
+#creating a horizontal barplot to show number of home and away goals scored by each team till date
 df = pd.DataFrame(dict(graph=['Away\nGames', 'Home\nGames'],
                            n=[athmadrid_away, athmadrid_home], m=[juve_away, juve_home])) 
 
@@ -178,6 +177,9 @@ ax.set_xlabel('Number of Goals Scored')
 
 plt1.title("Goals scored by Juventus and Athletico so far in the 18/19 season")
 plt1.show()
+
+
+
 
 
 
